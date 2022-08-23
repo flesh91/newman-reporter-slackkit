@@ -50,14 +50,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*Test Summary*"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "*TESTS SUMMARY:* \n\nTotal Requests: *${stats.requests.total}* \n\n Passed: *${stats.requests.total - parsedFailures.length - skipCount}* \n\n Failed: *${parsedFailures.length}* \n\n Skipped: *${skipCount}*"
+                    "text": "*TESTS SUMMARY:*\n>Total Requests: *${stats.requests.total}*\n>Passed: *${stats.requests.total - parsedFailures.length - skipCount}*\n>Failed: *${parsedFailures.length}*\n>Skipped: *${skipCount}* "
                 }
             },
             {
