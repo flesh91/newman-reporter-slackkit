@@ -14,7 +14,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
         "type": "header",
         "text": {
         "type": "plain_text",
-            "text": "TESTS FAILED :red_circle:",
+            "text": "Tests failed :red_circle:",
         "emoji": true
         }
     }
@@ -24,7 +24,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
         "type": "header",
         "text": {
             "type": "plain_text",
-            "text": "ALL PASSED :large_green_circle:",
+            "text": "Tests passed :large_green_circle:",
             "emoji": true
         }
     }
@@ -50,7 +50,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*TESTS SYMMARY:*"
+                    "text": "*Tests summary:*"
                 }
             },
             {
@@ -58,7 +58,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                 "fields": [
                     {
                         "type": "mrkdwn",
-                        "text": "Total Tests:"
+                        "text": "Total Requests:"
                     },
                     {
                         "type": "mrkdwn",
@@ -66,7 +66,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Test Passed:"
+                        "text": "Passed:"
                     },
                     {
                         "type": "mrkdwn",
@@ -74,7 +74,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Test Failed:"
+                        "text": "Failed:"
                     },
                     {
                         "type": "mrkdwn",
@@ -82,7 +82,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Test Skipped:"
+                        "text": "Skipped:"
                     },
                     {
                         "type": "mrkdwn",
