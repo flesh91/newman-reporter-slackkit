@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flesh91/newman-reporter-slackmsg/"
+    "url": "https://github.com/flesh91/newman-reporter-slackkit/"
   },
   "keywords": [
     "newman",
@@ -17,9 +17,9 @@
   "author": "Jack Chaw",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jackcoded/newman-reporter-slackmsg/issues"
+    "url": "https://github.com/flesh91/newman-reporter-slackkit/issues"
   },
-  "homepage": "https://github.com/jackcoded/newman-reporter-slackmsg#readme",
+  "homepage": "https://github.com/flesh91/newman-reporter-slackkit#readme",
   "dependencies": {
     "@types/node": "^14.0.13",
     "axios": "^0.21.1",
