@@ -34,11 +34,10 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
         "channel": "${channel}",
         "blocks": [
             {
-                "type": "header",
+                "type": "section",
                 "text": {
-                    "type": "plain_text",
-                    "text": "${environment} - ${collection}",
-                    "emoji": true
+                    "type": "mrkdwn",
+                    "text": "${environment} - ${collection}"
                 }
             },
             ${failures.length > 0 ? failureMessage : successMessage},
