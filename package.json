@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-slackkit",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "newman reporter to slack",
   "main": "index.js",
   "repository": {
