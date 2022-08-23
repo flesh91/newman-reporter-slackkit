@@ -34,11 +34,20 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
         "channel": "${channel}",
         "blocks": [
             {
-                "type": "section",
+                "type": "header",
                 "text": {
-                    "type": "mrkdwn",
-                    "text": "${environment} - ${collection}"
+                    "type": "plain_text",
+                    "text": "${environment}"
                 }
+            },
+            {
+                "type": "context",
+                "elements": [
+                    {
+                        "text": "*${collection}*  |  Test Duration: ${prettyms(timings.completed - timings.started)}",
+                        "type": "mrkdwn"
+                    }
+                ]
             },
             ${failures.length > 0 ? failureMessage : successMessage},
             {
@@ -85,14 +94,6 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                     {
                         "type": "mrkdwn",
                         "text": "${skipCount}"
-                    },
-                    {
-                        "type": "mrkdwn",
-                        "text": "Test Duration:"
-                    },
-                    {
-                        "type": "mrkdwn",
-                        "text": "${prettyms(timings.completed - timings.started)}"
                     }
                 ]
             },
