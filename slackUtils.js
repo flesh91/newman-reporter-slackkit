@@ -11,80 +11,145 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
     let skipCount = getSkipCount(executions);
     let failureMessage = `
     {
-        "type": "header",
-        "text": {
-        "type": "plain_text",
-            "text": "Tests failed :red_circle:",
-        "emoji": true
-        }
+        "channel": "${channel}",
+        "attachments": [
+            {
+                "color": "#f25b44",
+                "blocks": [
+                    {
+                        "type": "header",
+                        "text": {
+                        "type": "plain_text",
+                            "text": "Tests failed :red_circle:",
+                        "emoji": true
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "text": "Env: *${environment}* | Collection: *${collection}* | Duration: *${prettyms(timings.completed - timings.started)}*",
+                                "type": "mrkdwn"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*TESTS SUMMARY:* \\n> Total Requests: *${stats.requests.total}* \\n> Passed: *${stats.requests.total - parsedFailures.length - skipCount}* \\n> Failed: *${parsedFailures.length}* \\n> Skipped: *${skipCount}* "
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "Detailed report link:"
+                        },
+                        "accessory": {
+                            "type": "button",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "Click Me",
+                                "emoji": true
+                            },
+                            "value": "Report",
+                            "url": "${reportingUrl}"
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "plain_text",
+                                "text": ":kitsoft: Kitsoft QA 2022",
+                                "emoji": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]  
     }
     `
     let successMessage = `
     {
-        "type": "header",
-        "text": {
-            "type": "plain_text",
-            "text": "Tests passed :large_green_circle:",
-            "emoji": true
-        }
-    }
-    `
-    return jsonminify(`
-    {
         "channel": "${channel}",
-        "blocks": [
-            ${failures.length > 0 ? failureMessage : successMessage},
+        "attachments": [
             {
-                "type": "context",
-                "elements": [
+                "color": "#29a745",
+                "blocks": [
                     {
-                        "text": "Env: *${environment}* | Collection: *${collection}* | Duration: *${prettyms(timings.completed - timings.started)}*",
-                        "type": "mrkdwn"
-                    }
-                ]
-            },
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "*TESTS SUMMARY:* \\n> Total Requests: *${stats.requests.total}* \\n> Passed: *${stats.requests.total - parsedFailures.length - skipCount}* \\n> Failed: *${parsedFailures.length}* \\n> Skipped: *${skipCount}* "
-                }
-            },
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Detailed report link:"
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me",
-                        "emoji": true
+                        "type": "header",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Tests passed :large_green_circle:",
+                            "emoji": true
+                        }
                     },
-                    "value": "Report",
-                    "url": "${reportingUrl}"
-                }
-            },
-            {
-                "type": "context",
-                "elements": [
                     {
-                        "type": "plain_text",
-                        "text": ":kitsoft: Kitsoft QA 2022",
-                        "emoji": true
+                        "type": "context",
+                        "elements": [
+                            {
+                                "text": "Env: *${environment}* | Collection: *${collection}* | Duration: *${prettyms(timings.completed - timings.started)}*",
+                                "type": "mrkdwn"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*TESTS SUMMARY:* \\n> Total Requests: *${stats.requests.total}* \\n> Passed: *${stats.requests.total - parsedFailures.length - skipCount}* \\n> Failed: *${parsedFailures.length}* \\n> Skipped: *${skipCount}* "
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "Detailed report link:"
+                        },
+                        "accessory": {
+                            "type": "button",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "Click Me",
+                                "emoji": true
+                            },
+                            "value": "Report",
+                            "url": "${reportingUrl}"
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "plain_text",
+                                "text": ":kitsoft: Kitsoft QA 2022",
+                                "emoji": true
+                            }
+                        ]
                     }
                 ]
             }
-        ]
-       }`);
+        ]  
+    }
+    `
+    return jsonminify(`
+    ${failures.length > 0 ? failureMessage : successMessage}
+    `);
 }
 
 function getSkipCount(executions) {
