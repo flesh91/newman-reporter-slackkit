@@ -11,7 +11,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
     let skipCount = getSkipCount(executions);
     let failureMessage = `
     {
-        "type": "section",
+        "type": "header",
         "text": {
         "type": "plain_text",
             "text": "Tests failed :red_circle:",
@@ -21,7 +21,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
     `
     let successMessage = `
     {
-        "type": "section",
+        "type": "header",
         "text": {
             "type": "plain_text",
             "text": "All Passed :large_green_circle:",
@@ -33,23 +33,19 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
     {
         "channel": "${channel}",
         "blocks": [
+            ${failures.length > 0 ? failureMessage : successMessage},
             {
-                "type": "header",
-                "text": {
-                    "type": "plain_text",
-                    "text": "${environment}"
-                }
+                "type": "divider"
             },
             {
                 "type": "context",
                 "elements": [
                     {
-                        "text": "*${collection}*  |  Test Duration: ${prettyms(timings.completed - timings.started)}",
+                        "text": "Env: ${environment} | Collection: *${collection}* | Duration: ${prettyms(timings.completed - timings.started)}",
                         "type": "mrkdwn"
                     }
                 ]
             },
-            ${failures.length > 0 ? failureMessage : successMessage},
             {
                 "type": "divider"
             },
@@ -104,7 +100,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "Detailed report link"
+                    "text": "Detailed report link:"
                 },
                 "accessory": {
                     "type": "button",
