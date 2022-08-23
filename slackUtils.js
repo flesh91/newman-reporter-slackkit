@@ -57,7 +57,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                 "fields": [
                     {
                         "type": "mrkdwn",
-                        "text": "Total Tests:"
+                        "text": "Total Requests:"
                     },
                     {
                         "type": "mrkdwn",
@@ -65,7 +65,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Test Passed:"
+                        "text": "Passed:"
                     },
                     {
                         "type": "mrkdwn",
@@ -73,7 +73,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Test Failed:"
+                        "text": "Failed:"
                     },
                     {
                         "type": "mrkdwn",
