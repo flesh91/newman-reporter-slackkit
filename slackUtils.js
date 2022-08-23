@@ -41,7 +41,7 @@ function slackMessage(stats, timings, failures, executions, maxMessageSize, coll
                 "type": "context",
                 "elements": [
                     {
-                        "text": "Env: ${environment} | Collection: *${collection}* | Duration: ${prettyms(timings.completed - timings.started)}",
+                        "text": "Env: *${environment}* | Collection: *${collection}* | Duration: *${prettyms(timings.completed - timings.started)}*",
                         "type": "mrkdwn"
                     }
                 ]
