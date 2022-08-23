@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jackcoded/newman-reporter-slackmsg/"
+    "url": "https://github.com/flesh91/newman-reporter-slackmsg/"
   },
   "keywords": [
     "newman",
